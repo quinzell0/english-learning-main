@@ -5,7 +5,7 @@
 <div class="container-fluid">
 
 	<!-- Page Heading -->
-	<h1 class="h3 mb-3 text-gray-800">Forum Tugas</h1>
+	<h1 class="h3 mb-3 text-gray-800">Konten Pembelajaran</h1>
 
 	<div class="row mb-5">
 
@@ -13,7 +13,7 @@
 			<div class="col-md-6 col-lg-4">
 				<div class="card shadow mb-4">
 					<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-						<h6 class="m-0 font-weight-bold text-primary"><?= $t['level'] ?></h6>
+						<h6 class="m-0 font-weight-bold text-primary">Intermediate Class</h6>
 					</div>
 					<div class="card-body">
 						<div class="row align-items-center">

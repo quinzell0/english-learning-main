@@ -51,6 +51,7 @@ $routes->group('aplikasi', function ($routes) {
 	// SISWA
 	$routes->group('siswa', function ($routes) {
 		$routes->get('/', 'Aplikasi\Siswa::index');
+		$routes->get('konten-pembelajaran', 'Aplikasi\Siswa::konten_pembelajaran');
 		$routes->get('forum-tugas', 'Aplikasi\Siswa::forum_tugas');
 		$routes->get('detail-tugas/(:num)', 'Aplikasi\Siswa::detail_tugas/$1');
 		$routes->put('tambah-komentar', 'Aplikasi\Siswa::tambah_komentar');

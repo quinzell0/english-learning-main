@@ -3,10 +3,10 @@
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
-	<h1 class="h3 text-gray-800">Daftar Konten</h1>
+	<h1 class="h3 text-gray-800">Daftar Tugas</h1>
 	<ol class="breadcrumb mb-4">
 		<li class="breadcrumb-item"><a href="/aplikasi/siswa"><i class="fa fa-home fa-fw fa-sm"></i> home</a></li>
-		<li class="breadcrumb-item active"><a href="/aplikasi/siswa/forum-tugas"><i class="fa fa-comments fa-fw fa-sm"></i> Konten Pembelajaran</a></li>
+		<li class="breadcrumb-item active"><a href="/aplikasi/siswa/forum-tugas"><i class="fa fa-comments fa-fw fa-sm"></i>Tugas</a></li>
 		<!-- <li class="breadcrumb-item active"></li> -->
 	</ol>
 
@@ -14,7 +14,7 @@
 		<div class="row mb-5">
 			<div class="col-md-6 col-lg-4">
 				<div class="alert alert-info" role="alert">
-					<span>Konten belum tersedia</span>
+					<span>Daftar Tugas belum tersedia</span>
 				</div>
 			</div>
 		</div>
@@ -27,13 +27,6 @@
 
 				<div class="col-md-6 col-lg-4">
 					<div class="card shadow mb-4">
-
-						<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-							<h6 class="m-0 font-weight-bold text-primary text-capitalize">
-								Kategori : <?= $t['kategori']; ?>
-							</h6>
-						</div>
-
 						<div class="card-body">
 							<div class="row align-items-center">
 								<div class="col-auto">

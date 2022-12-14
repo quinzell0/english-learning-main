@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class UserModel extends Model
 {
 	protected $table = 'user';
-	protected $allowedFields = ['nama_lengkap', 'slug', 'alamat', 'foto', 'email', 'password', 'cookie', 'role_id', 'mapel_id', 'is_active'];
+	protected $allowedFields = ['nama_lengkap', 'slug', 'alamat', 'foto', 'email', 'password', 'cookie', 'role_id', 'mapel_id', 'is_active', 'level'];
 	protected $useTimestamps = true;
 
 	// ambil data user

@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class TugasModel extends Model
 {
   protected $table = 'tugas';
-  protected $allowedFields = ['user_id', 'mapel_id', 'mapel', 'kelas', 'jurusan', 'judul', 'kategori', 'deskripsi', 'icon', 'ditugaskan'];
+  protected $allowedFields = ['user_id', 'mapel_id', 'mapel', 'kelas', 'jurusan', 'judul', 'kategori', 'deskripsi', 'icon', 'ditugaskan', 'level'];
   protected $useTimestamps = true;
 
   public function getTugas($id = false)

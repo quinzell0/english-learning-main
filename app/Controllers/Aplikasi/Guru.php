@@ -286,14 +286,14 @@ class Guru extends BaseController
 				'label' => 'Judul tugas',
 				'rules' => 'required'
 			],
-			'kategori' => 'required',
+			'level' => 'required',
 			'deskripsi' => 'required',
 			'file' => 'max_size[file,20000]|mime_in[file,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/pdf,image/png,image/jpg,image/jpeg,video/mp4,video/3gpp,video/quicktime,video/MP2T,video/x-msvideo]|ext_in[file,png,jpg,jpeg,gif,pdf,docs,docx,doc,ppt,xlsx,pptx,xls,mp4,3gp,ts,avi,mov]',
 		])) {
 			return redirect()->to('/aplikasi/guru/tugas')->withInput();
 		}
 		$judul = htmlspecialchars($this->request->getPost('judul'));
-		$kategori = htmlspecialchars($this->request->getPost('kategori'));
+		$level = htmlspecialchars($this->request->getPost('level'));
 		$deskripsi = htmlspecialchars($this->request->getPost('deskripsi'));
 		$file = $this->request->getFiles('file');
 		$user = $this->userModel->getUser($this->id);
@@ -305,7 +305,7 @@ class Guru extends BaseController
 			'user_id' => $this->id,
 			'mapel' => $mapel_guru['mapel'],
 			'judul' => $judul,
-			'kategori' => $kategori,
+			'level' => $level,
 			'deskripsi' => $deskripsi,
 			'ditugaskan' => $ditugaskan,
 		]);

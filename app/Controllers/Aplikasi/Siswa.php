@@ -22,7 +22,7 @@ class Siswa extends BaseController
 		$user = $this->userModel->getUser($this->id);
 		$user_mapel = $this->db->table('user_mapel')->get()->getRowArray();
 		$data = [
-			'title' => 'Konten Pembelajaran',
+			'title' => 'Tugas',
 			'user' => $user,
 			'tugas' => $this->tugasModel->where(['user_id' => $id])->orderBy('id', 'DESC')->findAll(),
 			'komentar' => $this->db->table('komentar_tugas'),
@@ -34,7 +34,7 @@ class Siswa extends BaseController
 		return view('aplikasi/siswa/tugas', $data);
 	}
 
-	public function forum_tugas()
+	public function konten_pembelajaran()
 	{
 		$user = $this->userModel->getUser($this->id);
 		$data = [
@@ -43,6 +43,23 @@ class Siswa extends BaseController
 			'db' => \Config\Database::connect(),
 			'tugas' => $this->db->table('tugas')
 				->select('tugas.user_id, tugas.mapel, user.nama_lengkap')
+				->join('user', 'tugas.user_id = user.id')
+				->where('mapel', 'Bahasa Inggris')
+				->distinct()
+				->get()->getResultArray()
+		];
+		return view('aplikasi/siswa/konten-pembelajaran', $data);
+	}
+
+	public function forum_tugas()
+	{
+		$user = $this->userModel->getUser($this->id);
+		$data = [
+			'title' => 'Forum Tugas',
+			'user' => $user,
+			'db' => \Config\Database::connect(),
+			'tugas' => $this->db->table('tugas')
+				->select('tugas.user_id, tugas.mapel, user.nama_lengkap, user.level')
 				->join('user', 'tugas.user_id = user.id')
 				->where('mapel', 'Bahasa Inggris')
 				->distinct()
