@@ -85,6 +85,7 @@ class Siswa extends BaseController
 			'user' => $this->userModel->getUser($this->id),
 			'db' => \Config\Database::connect(),
 			'tugas' => $tugas,
+            'is_deadline' => now() > strtotime($tugas['deadline_at']) ? true : false,
 			'file_tugas' => $this->db->table('file_tugas')->where('tugas_id', $id)->get()->getResultArray(),
 			'file_data_tugas' => $file_data_tugas,
 			'data_tugas' => $data_tugas,

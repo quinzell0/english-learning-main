@@ -5,13 +5,13 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-3 text-gray-800">Konten</h1>
+    <h1 class="h3 mb-3 text-gray-800">Datar Tugas</h1>
 
     <a href="#" class="btn btn-primary btn-icon-split mb-3" data-toggle="modal" data-target="#tambahTugasModal">
         <span class="icon text-white-50">
             <i class="fas fa-plus"></i>
         </span>
-        <span class="text">Buat Konten</span>
+        <span class="text">Buat Tugas</span>
     </a>
     <div class="row">
         <div class="col-md-8">
@@ -30,7 +30,7 @@
 
     <div class="card shadow mt-3 mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Riwayat Konten</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Riwayat Tugas</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -38,7 +38,7 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Judul Konten</th>
+                            <th>Judul Tugas</th>
                             <th>Deskripsi</th>
                             <th>Tanggal Upload</th>
                             <th>Ditugaskan</th>
@@ -78,7 +78,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambahTugasModal">Tambah Konten</h5>
+                <h5 class="modal-title" id="tambahTugasModal">Tambah Tugas</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -91,6 +91,15 @@
                     </div>
                     <div class="form-group">
                         <textarea class="form-control" id="text" placeholder="Deskripsi" name="deskripsi" rows="3"><?= old('deskripsi'); ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="deadline_at">Batas Pengumpulan</label>
+                        <div>
+                            <input type="datetime-local" class="form-control <?= ($validation->hasError('deadline_at')) ? 'is-invalid' : '' ?>" id="deadline_at" name="deadline_at" value="<?= old('deadline_at') ?>">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('deadline_at') ?>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="file">Tambahkan File/Foto : </label>

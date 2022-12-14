@@ -36,26 +36,26 @@
 					</div>
 				</div>
 
+                
 				<div class="form-group row">
-					<label for="kategori" class="col-3 col-lg-2 col-form-label">Kategori</label>
+                    <label for="deskripsi" class="col-3 col-lg-2 col-form-label">Deskripsi</label>
 					<div class="col-9">
-						<input type="text" class="form-control <?= ($validation->hasError('kategori')) ? 'is-invalid' : '' ?>" id="kategori" name="kategori" value="<?= (old('kategori')) ? old('kategori') : $tugas['kategori'] ?>">
+                        <textarea class="form-control <?= ($validation->hasError('deskripsi')) ? 'is-invalid' : '' ?>" id="deskripsi" name="deskripsi" rows="5"><?= (old('deskripsi')) ? old('deskripsi') : $tugas['deskripsi'] ?></textarea>
 						<div class="invalid-feedback">
-							<?= $validation->getError('kategori') ?>
+                            <?= $validation->getError('deskripsi') ?>
 						</div>
 					</div>
 				</div>
-
-				<div class="form-group row">
-					<label for="deskripsi" class="col-3 col-lg-2 col-form-label">Deskripsi</label>
-					<div class="col-9">
-						<textarea class="form-control <?= ($validation->hasError('deskripsi')) ? 'is-invalid' : '' ?>" id="deskripsi" name="deskripsi" rows="5"><?= (old('deskripsi')) ? old('deskripsi') : $tugas['deskripsi'] ?></textarea>
-						<div class="invalid-feedback">
-							<?= $validation->getError('deskripsi') ?>
-						</div>
-					</div>
-				</div>
-
+                
+                <div class="form-group row">
+                    <label for="kategori" class="col-3 col-lg-2 col-form-label">Batas Pengumpulan</label>
+                    <div class="col-9">
+                        <input type="datetime-local" class="form-control <?= ($validation->hasError('deadline_at')) ? 'is-invalid' : '' ?>" id="deadline_at" name="deadline_at" value="<?= (old('deadline_at')) ? old('deadline_at') : $tugas['deadline_at'] ?>">
+                        <div class="invalid-feedback">
+                            <?= $validation->getError('deadline_at') ?>
+                        </div>
+                    </div>
+                </div>
 				<div class="form-group row">
 					<label for="file" class="col-3 col-lg-2 col-form-label">Ganti File/Foto : </label>
 					<div class="col-9">

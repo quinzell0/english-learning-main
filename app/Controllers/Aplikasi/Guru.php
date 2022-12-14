@@ -58,7 +58,6 @@ class Guru extends BaseController
 	public function detail_tugas($id)
 	{
 		$user = $this->userModel->getUser($this->id);
-		// dd($user);
 		$user_mapel = $this->db->table('user_mapel')->where('id', $user['mapel_id'])->get()->getRowArray();
 		$tugas =  $this->tugasModel->where(['id' => $id, 'mapel' => $user_mapel['mapel']])->first();
 		if (empty($tugas)) {
@@ -71,6 +70,7 @@ class Guru extends BaseController
 			'tugas' => $tugas,
 			'komentar' => $this->db->table('komentar_tugas'),
 			'id' => $id,
+            'is_deadline' => now() > strtotime($tugas['deadline_at']) ? true : false,
 			'file_tugas' => $this->db->table('file_tugas')->where('tugas_id', $id)->get()->getResultArray(),
 			'user_tugas' => $this->userModel->getUser($tugas['user_id']),
 			'validation' => \Config\Services::validation()
@@ -286,14 +286,12 @@ class Guru extends BaseController
 				'label' => 'Judul tugas',
 				'rules' => 'required'
 			],
-			'level' => 'required',
 			'deskripsi' => 'required',
 			'file' => 'max_size[file,20000]|mime_in[file,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/pdf,image/png,image/jpg,image/jpeg,video/mp4,video/3gpp,video/quicktime,video/MP2T,video/x-msvideo]|ext_in[file,png,jpg,jpeg,gif,pdf,docs,docx,doc,ppt,xlsx,pptx,xls,mp4,3gp,ts,avi,mov]',
 		])) {
 			return redirect()->to('/aplikasi/guru/tugas')->withInput();
 		}
 		$judul = htmlspecialchars($this->request->getPost('judul'));
-		$level = htmlspecialchars($this->request->getPost('level'));
 		$deskripsi = htmlspecialchars($this->request->getPost('deskripsi'));
 		$file = $this->request->getFiles('file');
 		$user = $this->userModel->getUser($this->id);
@@ -305,18 +303,17 @@ class Guru extends BaseController
 			'user_id' => $this->id,
 			'mapel' => $mapel_guru['mapel'],
 			'judul' => $judul,
-			'level' => $level,
 			'deskripsi' => $deskripsi,
 			'ditugaskan' => $ditugaskan,
 		]);
 		$tugas = $this->db->table('tugas')->where('user_id', $this->id)->orderBy('id', 'DESC')->get()->getRowArray();
 		$user_tugas = $this->userModel->where(['role_id' => 3])->findAll();
 		foreach ($user_tugas as $a) {
-			sendEmail(
-				$a['email'],
-				'TUGAS ' . strtoupper($mapel_guru['mapel']),
-				'Hallo ' . $a['nama_lengkap'] . '! ' . $user['nama_lengkap'] . ' Telah mengupload tugas baru, <a href="' . base_url() . '/aplikasi/siswa/detail-tugas/' . $tugas['id'] . '" target="_blank">Klik disini</a> untuk melihat tugas!'
-			);
+			// sendEmail(
+			// 	$a['email'],
+			// 	'TUGAS ' . strtoupper($mapel_guru['mapel']),
+			// 	'Hallo ' . $a['nama_lengkap'] . '! ' . $user['nama_lengkap'] . ' Telah mengupload tugas baru, <a href="' . base_url() . '/aplikasi/siswa/detail-tugas/' . $tugas['id'] . '" target="_blank">Klik disini</a> untuk melihat tugas!'
+			// );
 			tambah_notif($a['id'], '/aplikasi/siswa/detail-tugas/' . $tugas['id'], 'TUGAS ' . $mapel_guru['mapel'] . '! Ayo lihat dan kerjakan sekarang!', 'fa-clipboard-list');
 		}
 		if ($file) {
@@ -481,14 +478,13 @@ class Guru extends BaseController
 				'label' => 'Judul tugas',
 				'rules' => 'required'
 			],
-			'kategori' => 'required',
 			'deskripsi' => 'required',
 			'file' => 'max_size[file,20000]|mime_in[file,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/pdf,image/png,image/jpg,image/jpeg,video/mp4,video/3gpp,video/quicktime,video/MP2T,video/x-msvideo]|ext_in[file,png,jpg,jpeg,gif,pdf,docs,docx,doc,ppt,xlsx,pptx,xls,mp4,3gp,ts,avi,mov]',
 		])) {
 			return redirect()->to('/aplikasi/guru/ubah-tugas/' . $id)->withInput();
 		}
 		$judul = htmlspecialchars($this->request->getPost('judul'));
-		$kategori = htmlspecialchars($this->request->getPost('kategori'));
+		$deadline_at = htmlspecialchars($this->request->getPost('deadline_at'));
 		$deskripsi = htmlspecialchars($this->request->getPost('deskripsi'));
 		$file = $this->request->getFiles('file');
 		$file_lama = $this->request->getPost('file_lama');
@@ -502,7 +498,7 @@ class Guru extends BaseController
 			'user_id' => $this->id,
 			'mapel' => $mapel_guru['mapel'],
 			'judul' => $judul,
-			'kategori' => $kategori,
+			'deadline_at' => $deadline_at,
 			'deskripsi' => $deskripsi,
 			'ditugaskan' => $ditugaskan,
 		]);

@@ -34,6 +34,12 @@
 			<div class="small text-gray-500"><?= tanggal_lengkap($tugas['created_at']); ?> - <?= jam($tugas['created_at']); ?></div>
 			<hr class="mb-3 mt-4">
 			<p class="text-left text-break" style="white-space: pre-line;"><?= $tugas['deskripsi']; ?></p>
+
+			<div class="">
+                <div class="text-gray-600">Batas Pengumpulan :</div>
+                <div class="text-gray-600"><?= tanggal_lengkap($tugas['deadline_at']); ?> - <?= jam($tugas['deadline_at']); ?></div>
+            </div>
+            
 			<?php if (!empty($file_tugas)) : ?>
 				<div class="text-gray-600 mb-1">Lampiran</div>
 
@@ -60,8 +66,18 @@
 			<?php endif ?>
 
 			<?php if ($tugas['ditugaskan'] == 1) : ?>
-				<?php if (empty($data_tugas)) : ?>
+				<?php if (empty($data_tugas) && $is_deadline == false) : ?>
 					<button type="button" name="serah_tugas" id="serah_tugas" class="btn btn-primary btn-block mt-3" data-target="#serahTugasModal" data-toggle="modal"><i class="fas fa-file-upload fa-sm fa-fw"></i> Serahkan Tugas</button>
+                <?php elseif($is_deadline) : ?>
+                    <div class="alert alert-<?= !empty($data_tugas) ? 'success' : 'danger'?> mt-3">
+                        <strong>Batas Pengumpulan tugas berakhir!</strong>
+                        <?php if (!empty($data_tugas)): ?>
+                            <span class="d-block">Kamu sudah menyerahkan tugas</span>
+                            <a href="#" class="text-decoration-none small" data-target="#dataTugasModal" data-toggle="modal"><i class="fas fa-eye fa-sm fa-fw"></i> lihat</a>
+                        <?php else : ?>
+                        <span class="d-block">Kamu belum menyerahkan tugas!!</span>
+                        <?php endif ?>
+					</div>
 				<?php else : ?>
 					<div class="alert alert-success mt-3">
 						<strong>Terima kasih !</strong>

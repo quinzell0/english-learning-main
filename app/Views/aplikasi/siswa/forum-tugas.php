@@ -29,7 +29,7 @@
 						</div>
 					</div>
 					<div class="card-footer small d-flex justify-content-center">
-						<a href="/aplikasi/siswa/tugas/<?= $t['user_id']; ?>" class="text-primary text-decoration-none">Lihat daftar konten <i class="fa fa-chevron-right fa-sm fa-fw"></i></a>
+						<a href="/aplikasi/siswa/tugas/<?= $t['user_id']; ?>" class="text-primary text-decoration-none">Lihat daftar tugas <i class="fa fa-chevron-right fa-sm fa-fw"></i></a>
 
 					</div>
 				</div>
