@@ -24,7 +24,7 @@ class Siswa extends BaseController
 		$data = [
 			'title' => 'Tugas',
 			'user' => $user,
-			'tugas' => $this->tugasModel->where(['user_id' => $id])->orderBy('id', 'DESC')->findAll(),
+			'tugas' => $this->tugasModel->where(['user_id' => $id, 'type' => 'tugas'])->orderBy('id', 'DESC')->findAll(),
 			'komentar' => $this->db->table('komentar_tugas'),
 			'db' => \Config\Database::connect(),
 		];
@@ -33,8 +33,23 @@ class Siswa extends BaseController
 		}
 		return view('aplikasi/siswa/tugas', $data);
 	}
+	public function konten_pembelajaran($id)
+	{
+		$user = $this->userModel->getUser($this->id);
+		$data = [
+			'title' => 'Konten Pembelajaran',
+			'user' => $user,
+			'tugas' => $this->tugasModel->where(['user_id' => $id, 'type' => 'konten-pembelajaran'])->orderBy('id', 'DESC')->findAll(),
+			'komentar' => $this->db->table('komentar_tugas'),
+			'db' => \Config\Database::connect(),
+		];
+		if (empty($data['tugas'])) {
+			throw new PageNotFoundException('Data tidak ditemukan!');
+		}
+		return view('aplikasi/siswa/konten-pembelajaran', $data);
+	}
 
-	public function konten_pembelajaran()
+	public function forum_konten_pembelajaran()
 	{
 		$user = $this->userModel->getUser($this->id);
 		$data = [
@@ -44,11 +59,11 @@ class Siswa extends BaseController
 			'tugas' => $this->db->table('tugas')
 				->select('tugas.user_id, tugas.mapel, user.nama_lengkap')
 				->join('user', 'tugas.user_id = user.id')
-				->where('mapel', 'Bahasa Inggris')
+				->where(['mapel' => 'Bahasa Inggris', 'type' => 'konten-pembelajaran'])
 				->distinct()
 				->get()->getResultArray()
 		];
-		return view('aplikasi/siswa/konten-pembelajaran', $data);
+		return view('aplikasi/siswa/forum-konten-pembelajaran', $data);
 	}
 
 	public function forum_tugas()
@@ -81,7 +96,7 @@ class Siswa extends BaseController
 			->get()->getResultArray();
 
 		$data = [
-			'title' => 'Konten Pembelajaran',
+			'title' => 'Detail Tugas',
 			'user' => $this->userModel->getUser($this->id),
 			'db' => \Config\Database::connect(),
 			'tugas' => $tugas,
@@ -95,6 +110,34 @@ class Siswa extends BaseController
 			'validation' => \Config\Services::validation()
 		];
 		return view('aplikasi/siswa/detail-tugas', $data);
+	}
+
+	public function detail_konten($id)
+	{
+		$user = $this->userModel->getUser($this->id);
+		$tugas =  $this->tugasModel->where(['id' => $id])->first();
+		$data_tugas = $this->db->table('data_tugas')->where(['tugas_id' => $id, 'user_id' => $user['id']])->get()->getRowArray();
+		$file_data_tugas = $this->db->table('file_tugas')
+			->select('file_tugas.*, tugas.id')
+			->join('tugas', 'tugas.id = ' . $id)
+			->where(['tugas.id' => $id, 'data_tugas_id' => $data_tugas['id'] ?? null])
+			->get()->getResultArray();
+
+		$data = [
+			'title' => 'Konten Pembelajaran',
+			'user' => $this->userModel->getUser($this->id),
+			'db' => \Config\Database::connect(),
+			'tugas' => $tugas,
+            'is_deadline' => now() > strtotime($tugas['deadline_at']) ? true : false,
+			'file_tugas' => $this->db->table('file_tugas')->where('tugas_id', $id)->get()->getResultArray(),
+			'file_data_tugas' => $file_data_tugas,
+			'data_tugas' => $data_tugas,
+			'komentar' => $this->db->table('komentar_tugas'),
+			'id' => $id,
+			'user_tugas' => $this->userModel->getUser($tugas['user_id']),
+			'validation' => \Config\Services::validation()
+		];
+		return view('aplikasi/siswa/detail-konten-pembelajaran', $data);
 	}
 
 	public function absen($id = false)

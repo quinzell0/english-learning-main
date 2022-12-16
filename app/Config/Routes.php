@@ -51,9 +51,11 @@ $routes->group('aplikasi', function ($routes) {
 	// SISWA
 	$routes->group('siswa', function ($routes) {
 		$routes->get('/', 'Aplikasi\Siswa::index');
-		$routes->get('konten-pembelajaran', 'Aplikasi\Siswa::konten_pembelajaran');
+		$routes->get('forum-konten-pembelajaran', 'Aplikasi\Siswa::forum_konten_pembelajaran');
+		$routes->get('konten-pembelajaran/(:num)', 'Aplikasi\Siswa::konten_pembelajaran/$1');
 		$routes->get('forum-tugas', 'Aplikasi\Siswa::forum_tugas');
 		$routes->get('detail-tugas/(:num)', 'Aplikasi\Siswa::detail_tugas/$1');
+		$routes->get('detail-konten/(:num)', 'Aplikasi\Siswa::detail_konten/$1');
 		$routes->put('tambah-komentar', 'Aplikasi\Siswa::tambah_komentar');
 	});
 
@@ -61,11 +63,14 @@ $routes->group('aplikasi', function ($routes) {
 	$routes->group('guru', function ($routes) {
 		$routes->get('/', 'Aplikasi\Guru::index');
 		$routes->get('forum-tugas', 'Aplikasi\Guru::forum_tugas');
+		$routes->get('konten-pembelajaran', 'Aplikasi\Guru::konten_pembelajaran');
 		$routes->get('detail-tugas/(:num)', 'Aplikasi\Guru::detail_tugas/$1');
+		$routes->get('detail-konten/(:num)', 'Aplikasi\Guru::detail_konten/$1');
 		$routes->get('data-absen/(:num)', 'Aplikasi\Guru::data_absen/$1');
 		$routes->get('data-tugas/(:num)', 'Aplikasi\Guru::data_tugas/$1');
 		$routes->get('data-tugas-siswa/(:num)/(:num)', 'Aplikasi\Guru::data_tugas_siswa/$1/$2');
 		$routes->get('ubah-tugas/(:num)', 'Aplikasi\Guru::ubah_tugas/$1');
+		$routes->get('ubah-konten/(:num)', 'Aplikasi\Guru::ubah_konten/$1');
 		$routes->get('buat-artikel', 'Aplikasi\Guru::buat_artikel');
 		$routes->get('update-artikel/(:segment)', 'Aplikasi\Guru::update_artikel/$1');
 		$routes->post('tambah-artikel', 'Aplikasi\Guru::tambah_artikel');
