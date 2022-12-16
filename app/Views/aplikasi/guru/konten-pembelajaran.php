@@ -5,7 +5,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-3 text-gray-800">Datar Konten</h1>
+    <h1 class="h3 mb-3 text-gray-800">Daftar Konten</h1>
 
     <a href="#" class="btn btn-primary btn-icon-split mb-3" data-toggle="modal" data-target="#tambahKontenModal">
         <span class="icon text-white-50">

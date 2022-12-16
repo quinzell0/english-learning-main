@@ -40,15 +40,14 @@
 			<div class="tab-content mb-5" id="nav-tabContent">
 				<div class="tab-pane fade show active" id="nav-tugas" role="tabpanel" aria-labelledby="nav-tugas-tab">
 					<p class="mt-2">
-						Kamu bisa buat tugas di halaman <a href="/aplikasi/guru/tugas" class="badge badge-info">Tugas Kelas</a> disana sudah lengkap dengan Tambah Ubah Hapus Lihat data tugas.
-						<br>
-						<br>
-						Ketika kamu memberi tugas kepada siswa maka setiap siswa mendapatkan notifikasi dari aplikasi ini dan mereka juga mendapatkan notifikasi dari gmail.
-						<br>
-						Tidak hanya itu, mereka juga dapat berkomentar di tugas yang kamu berikan dan dapat menyerahkan tugas yang anda berikan.
+						Kamu bisa buat tugas di halaman <a href="/aplikasi/guru/tugas" class="badge badge-info">Tugas</a> disana sudah lengkap dengan fitur untuk Tambah, Ubah, Hapus, dan Lihat data tugas.
 						<br>
 						<br>
 						Saat kamu membuat tugas untuk siswa, disana ada fitur <b>Upload File, Foto dan Video</b> tapi maksimal pengiriman file/video hanya 20MB dan juga ekstensi yang terbatas. hanya bisa upload file <b>Microsoft Word, Power Point, Excel dan PDF</b>. Selain dari itu tidak diizinkan mengupload, <i>*terkecuali di perbaharui</i>
+						<br>
+						<br>
+						Ketika kamu ingin memberikan konten pembelajaran berupa materi pembelajaran kepada siswa maka kamu dapat pergi ke halaman <a href="/aplikasi/guru/konten-pembelajaran" class="badge badge-info">Konten pembelajaran</a> disana kamu dapat membuat, mengubah, menghapus dan melihat data materi pembelajaran.
+						Tidak hanya itu, mereka juga dapat berkomentar di tugas yang kamu berikan dan dapat menyerahkan tugas yang anda berikan.
 						<br>
 						<br>
 						File, Foto dan Video yang siswa berikan juga bisa di download dan dapat dilihat juga, Tapi disini kamu tidak dapat menilai poin tugas siswa.

@@ -19,7 +19,7 @@
 				<p>
 					Halo <?= $user['nama_lengkap']; ?>,
 					<br>
-					Selamat datang di website belajar online! kamu bisa mengumpulkan tugas dan absensi kelas harian disini. jika kamu masih bingung dengan aplikasi ini silahkan baca <a href="#panduan" class="badge badge-primary" id="panduan">buku panduan</a> agar tidak terjadi ketidaknyamanan.
+					Selamat datang di website belajar online! kamu bisa mengumpulkan tugas dan mendownload konten pembelajaran disini. jika kamu masih bingung dengan aplikasi ini silahkan baca <a href="#panduan" class="badge badge-primary" id="panduan">buku panduan</a> agar tidak terjadi ketidaknyamanan.
 				</p>
 			</div>
 			<div>
@@ -35,13 +35,16 @@
 			<h4 class="text-gray-800 mb-3" id="panduan">Buku panduan</h4>
 			<nav>
 				<div class="nav nav-tabs" id="nav-tab" role="tablist">
-					<a class="nav-link active" id="nav-tugas-tab" data-toggle="tab" href="#nav-tugas" role="tab" aria-controls="nav-tugas" aria-selected="true">Tugas</a>
+					<a class="nav-link active" id="nav-tugas-tab" data-toggle="tab" href="#nav-tugas" role="tab" aria-controls="nav-tugas" aria-selected="true">Umum</a>
 				</div>
 			</nav>
 			<div class="tab-content mb-5" id="nav-tabContent">
 				<div class="tab-pane fade show active" id="nav-tugas" role="tabpanel" aria-labelledby="nav-tugas-tab">
 					<p class="mt-2">
-						Kamu bisa menyerahkan tugas di forum tugas tetapi penyerahan tugas hanya bisa 1 kali saja.
+						Di aplikasi ini kamu dapat mendownload konten pembelajaran yang telah diberikan oleh guru didalam aplikasi e-learning di halaman <a href="/aplikasi/siswa/forum-konten-pembelajaran" class="badge badge-primary">Konten Pembelajaran</a>
+						<br>
+						<br>
+						Kamu bisa menyerahkan tugas di halaman tugas tetapi penyerahan tugas hanya bisa 1 kali saja.
 						<br>
 						Selain dari itu, kamu juga bisa berkomentar dan berdiskusi disana
 						<br>
